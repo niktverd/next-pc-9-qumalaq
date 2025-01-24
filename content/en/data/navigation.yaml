@@ -1,0 +1,28 @@
+header:
+  leftItems:
+    - text: Pages
+      type: 'dropdown'
+      items:
+        - text: 'home'
+          url: '/'
+        - text: '9 qumalaq'
+          url: '/9-qumalaq'
+  rightItems:
+    - text: 'Github'
+      url: 'https://github.com/gravity-ui/page-constructor-website-template'
+      icon: 'https://storage.yandexcloud.net/cloud-www-assets/constructor/storybook/icons/git.svg'
+    - type: 'button'
+      text: 'Documentation'
+      url: 'https://github.com/gravity-ui/page-constructor-website-template'
+      theme: pseudo
+
+logo:
+  icon: ''
+  text: 'GravityUI'
+
+meta:
+  title: Togyq Qumalaq
+  description: Полигон для тестирования игры
+
+favicon:
+  folder: /assets/favicon

@@ -1,0 +1,9 @@
+@import '../../../styles/variables.scss';
+
+.togyz-qumalaq-block {
+    margin-top: $indent4XL;
+
+    @media (max-width: map-get($gridBreakpoints, 'sm')) {
+        padding: $indentSM;
+    }
+}
