@@ -1,12 +1,3 @@
-
-## Build modes
-
-Template supports two build modes:
-
-1. [Server side rendering (SSR)](https://nextjs.org/docs/pages/building-your-application/rendering/server-side-rendering)
-
-This mode is set by default.
-
 ### Development
 
 ```bash
@@ -14,3 +5,21 @@ npm ci
 
 PAGES_CACHE_TIME=1 npm run dev
 ```
+
+# Структура
+
+``` bash
+# API фолдер
+./src/pages/api/9-qumalaq
+
+# Кастомный кубик, который потом перенесем на сайт
+./src/ui/constructor/blocks/TogyzQumalaq
+
+# Класс хранящий состояние игры, хранится и на сервере и на клиенте
+./src/game
+
+# Рисование доски и анимации доски
+./src/board
+
+```
+
