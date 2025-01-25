@@ -32,6 +32,8 @@
     flex-grow: 1;
     padding-block: 0;
     gap: 10px;
+    align-items: center;
+    justify-content: center;
 }
 
 .rocks {
@@ -53,4 +55,9 @@
 
 .otau {
     min-height: 120px;
+    cursor: pointer;
+}
+
+.otau:hover {
+    background-color: #0001;
 }
