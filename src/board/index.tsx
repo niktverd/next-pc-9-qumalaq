@@ -7,12 +7,13 @@ export const Board = () => {
         9, 9, 9, 9, 9, 9, 9, 9, 1, 10, 9, 9, 9, 9, 9, 9, 9, 1, 0, 0,
     ]);
     const [turn, setTurn] = useState<'light' | 'dark'>('light');
-    const [bottomNotationValues] = useState([0, 1, 2, 3, 4, 5, 6, 7, 8]);
-    const [topNotationValues] = useState([8, 7, 6, 5, 4, 3, 2, 1, 0]);
+    const [lightNotationValues] = useState([0, 1, 2, 3, 4, 5, 6, 7, 8]);
+    const [darkNotationValues] = useState([17, 16, 15, 14, 13, 12, 11, 10, 9]);
 
     const handleClick = (index: number) => () => {
         const rocks = gameState[index];
         let tempState = [...gameState];
+        let localIndex = index;
 
         if (rocks < 1) {
             return;
@@ -40,8 +41,8 @@ export const Board = () => {
                     }
                 });
             }
+            localIndex++;
         } else {
-            let localIndex = index;
             tempState[localIndex] = 0;
             for (let i = 0; i < rocks; i++) {
                 if (localIndex > 17) {
@@ -51,6 +52,21 @@ export const Board = () => {
                 tempState[localIndex] = tempState[localIndex] + 1;
                 localIndex++;
             }
+            localIndex--;
+        }
+
+        if (localIndex > 17) {
+            localIndex = 0;
+        }
+
+        if (turn === 'light') {
+            if (darkNotationValues.includes(localIndex) && tempState[localIndex] % 2 === 0) {
+                tempState[18] = tempState[18] + tempState[localIndex];
+                tempState[localIndex] = 0;
+            }
+        } else if (lightNotationValues.includes(localIndex) && tempState[localIndex] % 2 === 0) {
+            tempState[19] = tempState[19] + tempState[localIndex];
+            tempState[localIndex] = 0;
         }
 
         setGameState(tempState);
@@ -62,53 +78,45 @@ export const Board = () => {
         }
     };
 
-    console.log(turn);
-
     return (
         <div className="container">
             <div className="kazan">{gameState[19]}</div>
             <div className="otaus">
                 <div className="notations">
-                    {topNotationValues.map((index) => (
+                    {darkNotationValues.map((index) => (
                         <div className="notation" key={index}>
-                            {index + 1}
+                            {index - 8}
                         </div>
                     ))}
                 </div>
                 <div className="rocks">
-                    {topNotationValues.map((index) => {
-                        const recalculatedIndex = index + 9;
+                    {darkNotationValues.map((index) => {
                         return (
                             <div
                                 className="otau"
-                                key={recalculatedIndex}
-                                onClick={
-                                    turn === 'dark' ? handleClick(recalculatedIndex) : undefined
-                                }
+                                key={index}
+                                onClick={turn === 'dark' ? handleClick(index) : undefined}
                             >
-                                {gameState[recalculatedIndex]}
+                                {gameState[index]}
                             </div>
                         );
                     })}
                 </div>
                 <div className="rocks">
-                    {bottomNotationValues.map((index) => {
-                        const recalculatedIndex = index;
+                    {lightNotationValues.map((index) => {
                         return (
                             <div
                                 className="otau"
-                                key={recalculatedIndex}
-                                onClick={
-                                    turn === 'light' ? handleClick(recalculatedIndex) : undefined
-                                }
+                                key={index}
+                                onClick={turn === 'light' ? handleClick(index) : undefined}
                             >
-                                {gameState[recalculatedIndex]}
+                                {gameState[index]}
                             </div>
                         );
                     })}
                 </div>
                 <div className="notations">
-                    {bottomNotationValues.map((index) => (
+                    {lightNotationValues.map((index) => (
                         <div className="notation" key={index}>
                             {index + 1}
                         </div>
