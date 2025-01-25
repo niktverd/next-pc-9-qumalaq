@@ -1,0 +1,25 @@
+.hand {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+
+    pointer-events: none;
+}
+
+.hand_unvisible {
+    display: none;
+}
+
+.rocks-on-hand {
+    width: 100px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.rock {
+    width: 15px;
+    height: 15px;
+    background: #ffffff;
+    border: 1px solid #000000;
+    border-radius: 50%;
+}
