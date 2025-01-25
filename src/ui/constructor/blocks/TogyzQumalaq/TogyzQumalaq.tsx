@@ -5,6 +5,7 @@ import {Title} from '@gravity-ui/page-constructor';
 
 import './TogyzQumalaq.scss';
 import {Button} from '@gravity-ui/uikit';
+import {Board} from 'src/board';
 
 export interface TogyzQumalaqProps {
     title: string;
@@ -25,6 +26,7 @@ const TogyzQumalaq: React.FC<TogyzQumalaqProps> = ({title, text}) => (
         >
             API Call
         </Button>
+        <Board />
     </div>
 );
 
