@@ -8,7 +8,7 @@ PAGES_CACHE_TIME=1 npm run dev
 
 # Структура
 
-``` bash
+```bash
 # API фолдер
 ./src/pages/api/9-qumalaq
 
@@ -22,4 +22,3 @@ PAGES_CACHE_TIME=1 npm run dev
 ./src/board
 
 ```
-

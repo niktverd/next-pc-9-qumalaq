@@ -28,7 +28,7 @@ export function preprocess(content: ConfigData, params: PreloadParams) {
 
 // extends page-constructor typograf config
 const config = {
-    [BlockType.CustomBlock]: {
+    [BlockType.TogyzQumalaq]: {
         fields: ['title'],
         transformer: yfmTransformer,
     },
