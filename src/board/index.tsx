@@ -1,5 +1,6 @@
 import {useState} from 'react';
 
+import {findBestMove} from './engine';
 import './styles.css';
 
 export const Board = () => {
@@ -9,6 +10,7 @@ export const Board = () => {
     const [turn, setTurn] = useState<'light' | 'dark'>('light');
     const [lightNotationValues] = useState([0, 1, 2, 3, 4, 5, 6, 7, 8]);
     const [darkNotationValues] = useState([17, 16, 15, 14, 13, 12, 11, 10, 9]);
+    const [highlightComputerMove, setHighlightComputerMove] = useState(-1);
 
     const handleClick = (index: number) => () => {
         const rocks = gameState[index];
@@ -73,8 +75,10 @@ export const Board = () => {
 
         if (turn === 'light') {
             setTurn('dark');
+            setHighlightComputerMove(findBestMove(tempState, 5));
         } else {
             setTurn('light');
+            // setHighlightHumanMove(findBestMove(tempState, 3));
         }
     };
 
@@ -93,7 +97,7 @@ export const Board = () => {
                     {darkNotationValues.map((index) => {
                         return (
                             <div
-                                className="otau"
+                                className={`otau ${highlightComputerMove === index ? 'red' : ''}`}
                                 key={index}
                                 onClick={turn === 'dark' ? handleClick(index) : undefined}
                             >
@@ -106,7 +110,7 @@ export const Board = () => {
                     {lightNotationValues.map((index) => {
                         return (
                             <div
-                                className="otau"
+                                className={`otau ${highlightComputerMove === index ? 'blue' : ''}`}
                                 key={index}
                                 onClick={turn === 'light' ? handleClick(index) : undefined}
                             >
