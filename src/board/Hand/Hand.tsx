@@ -86,10 +86,12 @@ const Hand = ({rocksOnHand, containerRef}: Props) => {
         return () => document.removeEventListener('mousemove', followCursor);
     });
 
-    return <div className={`hand ${isVisible ? '' : 'hand_unvisible'}`} ref={handRef}>
+    return (
+        <div className={`hand ${isVisible ? '' : 'hand_unvisible'}`} ref={handRef}>
             {rocksOnHand === 0 ? <OpenedHand /> : <ClosedHand />}
             <div className="rocks-on-hand">{rocks}</div>
         </div>
+    );
 };
 
 export default Hand;
