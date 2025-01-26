@@ -17,6 +17,7 @@ export const Board = () => {
     const [availablePlaces, setAvailablePlaces] = useState<number[]>([]);
     const [dif, setDif] = useState<Record<number, 1>>({});
     const [tempGameState, setTempGameState] = useState<number[]>([]);
+    const [firstOtau, setFirstOtau] = useState<number | null>(null);
 
     const handleClick = (index: number) => {
         const rocks = gameState[index];
@@ -25,6 +26,7 @@ export const Board = () => {
         const localAvailablePlaces = [];
 
         setRocksOnHand(rocks);
+        setFirstOtau(index);
 
         if (rocks < 1) {
             return;
@@ -94,6 +96,7 @@ export const Board = () => {
         setGameState(tempGameState);
         setAvailablePlaces([]);
         setDif({});
+        setFirstOtau(null);
 
         if (turn === 'light') {
             setTurn('dark');
@@ -140,7 +143,7 @@ export const Board = () => {
     const getOtauState = (index: number) => {
         const hasNewRock = Boolean(dif[index]);
 
-        return gameState[index] + (hasNewRock ? 1 : 0);
+        return (firstOtau === index ? 0 : gameState[index]) + (hasNewRock ? 1 : 0);
     };
 
     return (
