@@ -88,30 +88,27 @@ export class TogyzQumalaq {
             }
 
             const currentCell = `${currentPlayer}${currentHole + 1}` as OtauName;
-
+            let otauVal = this.altybakan[currentCell];
             // Если лунка является туздыком, пропускаем её
-            if (this.altybakan[currentCell] === 'tuzdyk') {
+            if (otauVal === 'tuzdyk') {
                 const selectedKazan = currentCell[0] as Side;
                 this.kazans[selectedKazan] = this.kazans[selectedKazan] + 1;
                 kumalaks--;
                 continue;
             }
 
-            if (currentCell !== cell) {
+            if (typeof otauVal === 'number' && currentCell !== cell) {
                 // Пропускаем начальную лунку
-                this.altybakan[currentCell]++;
+                this.altybakan[currentCell] = otauVal++;
                 kumalaks--;
             }
         }
 
         const nextOtau = `${currentPlayer}${currentHole + 1}` as OtauName;
+        const nextOtauVal = this.altybakan[nextOtau];
         // Проверка на захват камней
-        if (
-            typeof this.altybakan[nextOtau] === 'number' &&
-            currentPlayer !== player &&
-            this.altybakan[nextOtau] % 2 === 0
-        ) {
-            this.kazans[player] += this.altybakan[nextOtau];
+        if (typeof nextOtauVal === 'number' && currentPlayer !== player && nextOtauVal % 2 === 0) {
+            this.kazans[player] += nextOtauVal;
             this.altybakan[nextOtau] = 0;
         }
 
