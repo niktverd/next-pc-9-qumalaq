@@ -1,4 +1,4 @@
-FROM ghcr.io/gravity-ui/node-nginx:ubuntu20-nodejs18
+FROM ghcr.io/gravity-ui/node-nginx:ubuntu20-nodejs20
 
 ENV NEXT_TELEMETRY_DISABLED 1
 
